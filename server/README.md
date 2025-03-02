@@ -31,13 +31,13 @@ Your app is ready to be deployed!
 
 | API               | Method | Description             |
 | ----------------- | ------ | ----------------------- |
-| /api/v1/locations | GET    | Fetch all the locations |
+| /api/v1/locations | GET    | Fetch all the locations from vehicle file |
 
 ### Booking API
 
 | API              | Method | Description               |
 | ---------------- | ------ | ------------------------- |
-| /api/v1/bookings | GET    | Checking for availability |
+| /api/v1/bookings | GET    | Checking for slot availability |
 | /api/v1/bookings | POST   | Create new booking        |
 
 ## Other Details
