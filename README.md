@@ -16,7 +16,7 @@ Details about how to run and test are mentioned in Readme in the client folder a
 #### Tech Stack
 
 1. NodeJS (version v20.14.0)
-2. Express Framework + Typescript (version 4.21)
+2. Express Framework (version 4.21)
 3. Winston (for logging)
 
 Details about how to run and test as well as api details are mentioned in Readme in the server folder along with Source files in server folder.
