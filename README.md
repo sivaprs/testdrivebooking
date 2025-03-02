@@ -1,4 +1,4 @@
-# Hotel Room Booking Application
+# Vehicle Test Drive Booking Application
 
 It is a web application for user to reserve to test drive vehicle.
 
