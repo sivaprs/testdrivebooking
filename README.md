@@ -25,3 +25,5 @@ Details about how to run and test as well as api details are mentioned in Readme
 Run the below command in the main folder
 
 docker-compose up --build -d
+
+Access application : http://localhost:3000/home
