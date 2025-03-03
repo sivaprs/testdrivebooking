@@ -20,3 +20,7 @@ Details about how to run and test are mentioned in Readme in the client folder a
 3. Winston (for logging)
 
 Details about how to run and test as well as api details are mentioned in Readme in the server folder along with Source files in server folder.
+
+### Build and Test
+Run the below command in the main folder
+docker-compose up --build -d
