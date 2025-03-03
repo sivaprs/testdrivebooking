@@ -22,9 +22,6 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
 // Write to a file
 
-mongoose
-  .connect(process.env.MONGO_URI as string)
-  .then(() => logger.info("MongoDB Connected"))
-  .catch((err) => logger.error(err));
+
 
 export default app;
