@@ -21,9 +21,22 @@ Details about how to run and test are mentioned in Readme in the client folder a
 
 Details about how to run and test as well as api details are mentioned in Readme in the server folder along with Source files in server folder.
 
+### Data Presistance 
+
+ Both Vechicles and Reversations are stored as JSON (as per the requirement) in the server/db folder.
+
 ### Build and Test
 Run the below command in the main folder
 
-docker-compose up --build -d
+$ docker-compose up --build -d
 
-Access application : http://localhost:3000/home
+Access application : 
+http://localhost:3000/home
+
+Default - vehicle type set as tesla_model3 in UI. If we want to override can pass type in query string as http://localhost:3000/home?type=tesla_model3
+
+
+
+
+
+
