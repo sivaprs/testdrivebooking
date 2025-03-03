@@ -23,4 +23,5 @@ Details about how to run and test as well as api details are mentioned in Readme
 
 ### Build and Test
 Run the below command in the main folder
+
 docker-compose up --build -d
