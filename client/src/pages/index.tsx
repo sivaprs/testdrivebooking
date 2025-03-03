@@ -9,51 +9,70 @@ import {
   Select,
   Snackbar,
   Alert,
+  SelectChangeEvent,
 } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import Popup from "../components/BookingPopup/BookingPopup";
-import { VEHICLE_TYPE } from "../constants";
+import {
+  VEHICLE_TYPE,
+  SEVERITY_STATUS,
+  MESSAGE_SLOT_AVAIL_SUCCESS,
+  MESSAGE_SLOT_AVAIL_ERROR,
+  MESSAGE_RESERVE_SUCCESS,
+  MESSAGE_RESERVE_ERROR,
+} from "../constants";
 import "../index.css";
+
+type Availability = {
+  id: string;
+  minimumMinutesBetweenBookings: number;
+};
+
+type Vehicle = {
+  id: string;
+  minimumMinutesBetweenBookings: number;
+};
 
 const Main: React.FC = () => {
   const locations = useLocation();
 
-  const queryParams: any = new URLSearchParams(locations.search);
+  const queryParams = new URLSearchParams(locations.search);
 
   const type = queryParams.get("type") || VEHICLE_TYPE;
 
-  const [isPop, setIsPop] = useState(false);
+  const [isPop, setIsPop] = useState<boolean>(false);
 
-  const [opens, setOpens] = useState(false);
-
-  const [location, setLocation] = useState("");
+  const [opens, setOpens] = useState<boolean>(false);
 
   const [duration, setDuration] = useState("");
 
-  const [selectedLocation, setSelectedLocation] = useState<any>("");
+  const [selectedLocation, setSelectedLocation] = useState<string>("");
 
-  const [selectedDate, setSelectedDate] = useState<any>();
+  const [selectedDate, setSelectedDate] = useState<string>("");
 
-  const [availability, setAvailability] = useState<any>([]);
+  const [availability, setAvailability] = useState<Availability[]>([]);
 
-  const [vehicle, setVehicle] = useState<any>("");
+  const [vehicle, setVehicle] = useState<Vehicle>({
+    id: "",
+    minimumMinutesBetweenBookings: 15,
+  });
 
-  const [check, setCheck] = useState<any>(false);
+  const [check, setCheck] = useState<boolean>(false);
 
-  const [message, setMessage] = useState<any>("");
+  const [message, setMessage] = useState<string>("");
 
-  const [severity, setSeverity] = useState<any>("info");
+  const [severity, setSeverity] = useState<string>(SEVERITY_STATUS.INFO);
 
-  const onDateChange = (date: any) => {
+  const onDateChange = (date: string) => {
     setSelectedDate(date);
   };
 
-  const onLocationChange = (location: any) => {
+  const onLocationChange = (location: string) => {
     setSelectedLocation(location);
   };
 
-  const doReserve = (obj: any) => {
-    setVehicle(obj);
+  const doReserve = (vehicle: Vehicle) => {
+    setVehicle(vehicle);
     setIsPop(true);
   };
 
@@ -69,16 +88,12 @@ const Main: React.FC = () => {
       setAvailability(data?.availabilityList || []);
       if (data?.availability) {
         setOpens(true);
-        setSeverity("success");
-        setMessage(
-          "Slot is available. Please click Revserve button to proceed for reserve."
-        );
+        setSeverity(SEVERITY_STATUS.SUCCESS);
+        setMessage(MESSAGE_SLOT_AVAIL_SUCCESS);
       } else {
         setOpens(true);
-        setSeverity("error");
-        setMessage(
-          "Slot is not available for selected parameters. Plesae try with different parameters."
-        );
+        setSeverity(SEVERITY_STATUS.ERROR);
+        setMessage(MESSAGE_SLOT_AVAIL_ERROR);
       }
     } catch (e) {
       console.log("error", e);
@@ -99,14 +114,12 @@ const Main: React.FC = () => {
       let { data } = await bookingService.createBooking(request);
       if (data?.status) {
         setOpens(true);
-        setMessage("Your test drive reserved successfully");
-        setSeverity("success");
+        setMessage(MESSAGE_RESERVE_SUCCESS);
+        setSeverity(SEVERITY_STATUS.SUCCESS);
       } else {
         setOpens(true);
-        setSeverity("error");
-        setMessage(
-          "Your test drive reservation is failed. Please try different slot."
-        );
+        setSeverity(SEVERITY_STATUS.ERROR);
+        setMessage(MESSAGE_RESERVE_ERROR);
       }
 
       setAvailability([]);
@@ -132,7 +145,9 @@ const Main: React.FC = () => {
             <InputLabel>Duration</InputLabel>
             <Select
               value={duration}
-              onChange={(event: any) => setDuration(event.target.value)}
+              onChange={(event: SelectChangeEvent<string>) =>
+                setDuration(event.target.value)
+              }
               style={{ height: "40px", width: "220px" }}
             >
               <MenuItem key={"k-45"} value={45}>
@@ -212,9 +227,11 @@ const Main: React.FC = () => {
         autoHideDuration={10000}
         onClose={() => setOpens(false)}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        message={"Booking successfully"}
       >
-        <Alert severity={severity} variant="filled">
+        <Alert
+          severity={severity as "success" | "info" | "warning" | "error"}
+          variant="filled"
+        >
           {message}
         </Alert>
       </Snackbar>

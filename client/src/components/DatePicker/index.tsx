@@ -5,8 +5,16 @@ import utc from "dayjs/plugin/utc";
 
 dayjs.extend(utc);
 
-export function BookingDateTimePicker(props: any) {
+interface DateTimePickerProps {
+  onDateChange: (date: string) => void;
+}
+
+export function BookingDateTimePicker(props: DateTimePickerProps) {
   //const [selectedDate, setSelectedDate] = useState(dayjs());
+
+  const today = dayjs();
+  const minDate = today;
+  const maxDate = today.add(14, "day");
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -29,6 +37,8 @@ export function BookingDateTimePicker(props: any) {
           "& .MuiInputBase-root": { height: "40px" },
           "& .MuiOutlinedInput-root": { height: "40px" },
         }}
+        minDate={minDate}
+        maxDate={maxDate}
       />
     </LocalizationProvider>
   );

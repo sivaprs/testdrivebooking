@@ -242,6 +242,24 @@
       "customerName": "Tester Analyst",
       "customerEmail": "sivaprasanna@gmail.com",
       "customerPhone": "9742888788"
+    },
+    {
+      "id": 18753,
+      "vehicleId": "tesla_1000",
+      "startDateTime": "2025-03-10T23:30:00Z",
+      "endDateTime": "2025-03-11T00:15:00.000Z",
+      "customerName": "Tester Analyst",
+      "customerEmail": "sivaprasanna@gmail.com",
+      "customerPhone": "9742888788"
+    },
+    {
+      "id": 18754,
+      "vehicleId": "tesla_1001",
+      "startDateTime": "2025-03-13T10:05:00Z",
+      "endDateTime": "2025-03-13T10:50:00.000Z",
+      "customerName": "Tester Analyst",
+      "customerEmail": "sivaprasanna@gmail.com",
+      "customerPhone": "9742888788"
     }
   ]
 }

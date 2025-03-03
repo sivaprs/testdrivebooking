@@ -16,7 +16,7 @@ const BookingPopup: React.FC<any> = ({ open, onClose, title, onConfirm }) => {
   const [error, setError] = useState<string>("");
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  const handleEmailChange = (e: any) => {
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCEmail(e.target.value);
     if (!emailRegex.test(e.target.value)) {
       setError("Invalid email format");

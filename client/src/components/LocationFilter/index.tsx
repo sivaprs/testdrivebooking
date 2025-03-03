@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import LocationService from "../../services/locationService";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { Location, LocationFilterProps } from "./interface";
+import { LocationFilterProps } from "./interface";
 
 const LocationFilter: React.FC<LocationFilterProps> = ({
   selectedLocation,
